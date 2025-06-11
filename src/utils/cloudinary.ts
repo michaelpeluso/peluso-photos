@@ -15,5 +15,5 @@ export const fetchCloudinaryImages = async (folder: string) => {
         `https://res.cloudinary.com/${cloudinaryCloudName}/image/list/${folder}.json` // Fetch the list of images from the specified folder
     );
     const data = await res.json();
-    return data.resources.map((img: { secure_url: string }) => img.secure_url); // Extract secure URLs from the response
+    return data.resources.map((img: { secure_url: string }) => img.secure_url); // Map the response to get the secure URLs of the images
 };
