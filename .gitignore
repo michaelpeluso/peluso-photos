@@ -35,3 +35,8 @@ Desktop.ini
 logs/
 *.log
 lerna-debug.log*
+
+# Don't ignore lockfiles!
+ package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
