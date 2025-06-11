@@ -35,15 +35,3 @@ jobs:
               run: |
                   echo "Deployment completed successfully."
                   echo "You can view your site at https://peluso.photos/"
-
-            - name: Notify Deployment Success
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  echo "Deployment to GitHub Pages was successful!"
-                  echo "You can view your site at https://peluso.photos/"
-
-            - name: Notify Deployment Failure
-              if: failure()
-              run: |
-                  echo "Deployment failed. Please check the logs for more details."
-                  echo "You can view your site at https://peluso.photos/"
