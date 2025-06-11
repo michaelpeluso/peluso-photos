@@ -1,2 +1,189 @@
-@import "./theme.css";
 @import "tailwindcss";
+
+@layer theme, base, components, utilities;
+
+@layer base {
+    /* ==== Colors (brand, accent, neutral, status) ==== */
+    :root {
+        --color-primary: 29 78 216; /* blue-600 */
+        --color-secondary: 251 191 36; /* yellow-400 */
+        --color-accent: 244 63 94; /* rose-500 */
+        --color-neutral: 55 65 81; /* gray-700 */
+        --color-bg: 249 250 251; /* gray-50 */
+        --color-surface: 255 255 255; /* white */
+        --color-muted: 156 163 175; /* gray-400 */
+        --color-success: 16 185 129; /* emerald-500 */
+        --color-error: 239 68 68; /* red-500 */
+        --color-warning: 251 191 36; /* yellow-400 */
+        --color-info: 59 130 246; /* blue-500 */
+    }
+
+    html {
+        font-family: "Inter", "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        background-color: rgb(var(--color-bg));
+        color: rgb(var(--color-neutral));
+        scroll-behavior: smooth;
+    }
+    h1,
+    .text-h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+    }
+    h2,
+    .text-h2 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        line-height: 2.25rem;
+    }
+    h3,
+    .text-h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 2rem;
+    }
+    h4,
+    .text-h4 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.75rem;
+    }
+    h5,
+    .text-h5 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 1.5rem;
+    }
+    h6,
+    .text-h6 {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.25rem;
+    }
+
+    a {
+        color: rgb(var(--color-primary));
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+    a:hover {
+        color: rgb(var(--color-accent));
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-block px-6 py-2 rounded-lg font-semibold transition-colors;
+        background-color: rgb(var(--color-primary));
+        color: #fff;
+    }
+    .btn:hover {
+        background-color: rgb(var(--color-accent));
+        color: #fff;
+    }
+    .btn-secondary {
+        background-color: rgb(var(--color-secondary));
+        color: rgb(var(--color-neutral));
+    }
+    .btn-secondary:hover {
+        background-color: rgb(var(--color-warning));
+        color: rgb(var(--color-neutral));
+    }
+
+    /* Inputs & Form Fields */
+    input,
+    textarea,
+    select {
+        @apply px-4 py-2 rounded border border-gray-300 bg-white text-base text-gray-800;
+        transition: border-color 0.2s;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+        border-color: rgb(var(--color-primary));
+        outline: none;
+    }
+
+    /* Card */
+    .card {
+        @apply bg-white rounded-xl shadow-md p-6 mb-6;
+        border: 1px solid #f3f4f6;
+    }
+
+    /* Alerts */
+    .alert {
+        @apply p-4 mb-4 rounded-lg font-medium;
+        display: flex;
+        align-items: center;
+    }
+    .alert-success {
+        background: rgb(var(--color-success) / 0.1);
+        color: rgb(var(--color-success));
+    }
+    .alert-error {
+        background: rgb(var(--color-error) / 0.1);
+        color: rgb(var(--color-error));
+    }
+    .alert-warning {
+        background: rgb(var(--color-warning) / 0.1);
+        color: rgb(var(--color-warning));
+    }
+    .alert-info {
+        background: rgb(var(--color-info) / 0.1);
+        color: rgb(var(--color-info));
+    }
+
+    /* Spacing helpers */
+    .section {
+        @apply my-12 mx-auto max-w-4xl px-4;
+    }
+    .section-sm {
+        @apply my-6 mx-auto max-w-2xl px-4;
+    }
+
+    /* Responsive Image */
+    .img-responsive {
+        @apply w-full h-auto rounded-lg shadow;
+        object-fit: cover;
+    }
+
+    /* Navigation */
+    .navbar {
+        @apply flex items-center justify-between py-4 px-6 shadow bg-white sticky top-0 z-50;
+    }
+    .nav-link {
+        @apply text-base font-medium px-4 py-2 rounded transition-colors;
+        color: rgb(var(--color-neutral));
+    }
+    .nav-link:hover {
+        background: rgb(var(--color-primary) / 0.1);
+        color: rgb(var(--color-primary));
+    }
+
+    /* Footer */
+    .footer {
+        @apply py-8 px-4 text-center text-sm text-gray-400 bg-gray-50;
+    }
+
+    /* Utility: muted, highlight, disabled */
+    .muted {
+        color: rgb(var(--color-muted));
+    }
+    .highlight {
+        color: rgb(var(--color-accent));
+    }
+    .disabled,
+    [disabled] {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    /* Scrollbar (optional, modern browsers) */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgb(var(--color-muted));
+        border-radius: 4px;
+    }
+}
