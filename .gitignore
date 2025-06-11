@@ -1,76 +1,37 @@
 # Node dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Build outputs
 dist/
 build/
 .vite/
 coverage/
+
+# System files
 .DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.bak
+*.tmp
 
 # Env files
 .env
-.env.*    # in case you have .env.production etc.
+.env.*
 
-# Editor directories and files
+# Editor files
 .vscode/
 .idea/
 *.sublime-workspace
 *.sublime-project
 
-# MacOS files
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Optional: log files
-*.log
-
-# System files
-*.swp
-*.bak
-*.tmp
-
-# GitHub workflows cache
-.github/workflows/*.tmp
-
 # Misc
 *.local
 
-
 # Logs
-logs
+logs/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
