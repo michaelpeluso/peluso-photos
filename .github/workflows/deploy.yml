@@ -23,6 +23,11 @@ jobs:
 
             - run: npm run build
 
+            - name: Build
+              run: npm run build
+              env:
+                  VITE_FORM_ID: ${{ vars.VITE_FORM_ID }}
+
             - name: Deploy to GitHub Pages
               if: github.ref == 'refs/heads/main'
               uses: peaceiris/actions-gh-pages@v4
