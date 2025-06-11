@@ -11,14 +11,40 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: 20
+
             - run: npm ci
+
+            - run: npm run lint
+
             - run: npm run build
+
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v4
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
+                if: github.ref == 'refs/heads/main' # Ensure deployment only happens on main branch
+            - name: Post Deployment Cleanup
+                run: |
+                    echo "Deployment completed successfully."
+                    echo "You can view your site at https://<your-username>.github.io/<your-repo-name>/"
+                if: github.ref == 'refs/heads/main' # Optional: Run cleanup only on main branch
+            - name: Notify Deployment Success
+                run: |
+                    echo "Deployment to GitHub Pages was successful!"
+                    echo "You can view your site at https://<your-username>.github.io/<your-repo-name>/"
+                if: github.ref == 'refs/heads/main' # Optional: Notify only on main branch
+            - name: Notify Deployment Failure
+                if: failure()
+                run: |
+                    echo "Deployment failed. Please check the logs for more details."
+                    echo "You can view your site at https://<your-username>.github.io/<your-repo-name>/"
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure token is available for notifications
