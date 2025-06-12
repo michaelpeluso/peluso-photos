@@ -1,1 +1,1 @@
-![CI](https://github.com/your-username/peluso-photos/actions/workflows/deploy.yml/badge.svg)
+![CI](https://github.com/michaelpeluso/peluso-photos/actions/workflows/deploy.yml/badge.svg)
