@@ -13,22 +13,22 @@ export default function ContactForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-xl mx-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-xl mx-auto py-8">
             <div className="flex flex-col md:flex-row gap-4">
                 {/* Name */}
                 <div className="flex-1">
-                    <input id="name" name="name" type="text" required className="border p-2 rounded w-full" placeholder="Your name" />
+                    <input id="name" name="name" type="text" required className="bg-transparent border-gray-300 p-2 rounded w-full" placeholder="Your name" />
                     <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
                 {/* Email */}
                 <div className="flex-1">
-                    <input id="email" name="email" type="email" required className="border p-2 rounded w-full" placeholder="Your email" />
+                    <input id="email" name="email" type="email" required className="bg-transparent border-gray-300 p-2 rounded w-full" placeholder="Your email" />
                     <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
             </div>
             {/* General Message */}
             <div>
-                <textarea id="message" name="message" required className="border p-2 rounded w-full" rows={3} placeholder="Let's plan a shoot!" />
+                <textarea id="message" name="message" required className="bg-transparent border-gray-300 p-2 rounded w-full" rows={3} placeholder="Let's plan a shoot!" />
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
             </div>
 
