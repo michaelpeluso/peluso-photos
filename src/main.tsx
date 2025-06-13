@@ -1,10 +1,23 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./styles/index.css";
-import App from "./App.tsx";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+import Home from "./pages/Home";
+import ComingSoon from "./pages/ComingSoon";
+
+import "./styles/base.css";
+import "./styles/components.css";
+import "./styles/themes.css";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <App />
+        <Router>
+            {/* <Navbar /> */}
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/coming-soon" element={<ComingSoon />} />
+                <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+        </Router>
     </StrictMode>
 );

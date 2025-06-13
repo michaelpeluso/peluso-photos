@@ -1,4 +1,4 @@
-// AUTO-GENERATED, DO NOT EDIT
+// AUTO-GENERATED: Images from coming-soon
 export const images = [
   {
     "url": "https://res.cloudinary.com/dyczi6urp/image/upload/v1749441557/DSC_3550_a5mhg5.jpg",

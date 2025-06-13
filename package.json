@@ -6,10 +6,11 @@
     "scripts": {
         "dev": "vite",
         "lint": "eslint .",
-        "build": "tsc -b && vite build",
+        "build": "npm run update:all-images && tsc -b && vite build",
         "preview": "npm run lint && npm run build && vite preview",
         "postinstall": "patch-package",
-        "update:comingsoon": "tsx scripts/generate-image-list.ts coming-soon"
+        "update:images": "tsx scripts/update-images",
+        "update:all-images": "tsx scripts/update-all-images.ts"
     },
     "dependencies": {
         "@formspree/react": "^3.0.0",
@@ -22,7 +23,8 @@
         "dotenv": "^16.5.0",
         "eslint": "^9.28.0",
         "react": "^19.1.0",
-        "react-dom": "^19.1.0"
+        "react-dom": "^19.1.0",
+        "react-router-dom": "^7.6.2"
     },
     "devDependencies": {
         "@eslint/js": "^9.25.0",
