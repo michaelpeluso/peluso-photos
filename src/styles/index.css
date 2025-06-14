@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+    /* Color Variables */
+    --theme-background: #000;
+    --theme-foreground: #fff;
+
+    --theme-header-text: #000;
+    --theme-subheader-text: #000;
+    --theme-primary-text: #000;
+    --theme-primary-muted-text: #000;
+    --theme-accent-text: #000;
+
+    --theme-primary: #fff;
+    --theme-secondary: #fff;
+    --theme-primary-muted: #bdbdbd;
+    --theme-secondary-muted: #bdbdbd;
+
+    --theme-primary-button: #fff;
+    --theme-primary-button-hover: #bdbdbd;
+    --theme-primary-button-text: #fff;
+    --theme-primary-button-text-hover: #bdbdbd;
+    --theme-primary-button-text-focus: #bdbdbd;
+    --theme-primary-button-border: #fff;
+
+    --theme-secondary-button: #fff;
+    --theme-secondary-button-hover: #bdbdbd;
+
+    /* Font Variables */
+    --theme-font-title: "Inter", sans-serif;
+    --theme-font-body: "Inter", sans-serif;
+    --theme-font-accent: "Playfair Display", serif;
+}

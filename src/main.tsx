@@ -5,9 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Home from "./pages/Home";
 import ComingSoon from "./pages/ComingSoon";
 
-import "./styles/base.css";
-import "./styles/components.css";
-import "./styles/themes.css";
+import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
