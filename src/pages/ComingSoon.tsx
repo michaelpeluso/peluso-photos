@@ -34,7 +34,7 @@ export default function ComingSoon() {
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:michaelpeluso.photos@gmail.com" aria-label="Email" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 text-neutral-700 hover:bg-neutral-100 transition">
+                        <a href="mailto:michael@peluso.photos" aria-label="Email" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 text-neutral-700 hover:bg-neutral-100 transition">
                             {/* Email SVG */}
                             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
                                 <rect width="24" height="24" rx="6" fill="white" />
