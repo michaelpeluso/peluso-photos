@@ -8,6 +8,8 @@ const imageImports: Record<string, () => Promise<{ images: ImageObj[] }>> = {
     // weddings: () => import("../data/weddings-images"),
     // portraits: () => import("../data/portraits-images"),
     "coming-soon": () => import("../data/coming-soon-images"),
+    portraits: () => import("../data/portraits-images"),
+    events: () => import("../data/events-images"),
 };
 
 export async function getImagesByFolder(folder: string): Promise<ImageObj[]> {

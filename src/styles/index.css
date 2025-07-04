@@ -1,33 +1,81 @@
-@import "tailwindcss";
+@import "tailwindcss" important;
 
-:root {
-    /* Color Variables */
-    --theme-background: #000;
-    --theme-foreground: #fff;
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 
-    --theme-header-text: #000;
-    --theme-subheader-text: #000;
-    --theme-primary-text: #000;
-    --theme-primary-muted-text: #000;
-    --theme-accent-text: #000;
+@layer utilities {
+    .custom-css-selector-classname {
+        @tailwind utilities;
+    }
+}
 
-    --theme-primary: #fff;
-    --theme-secondary: #fff;
-    --theme-primary-muted: #bdbdbd;
-    --theme-secondary-muted: #bdbdbd;
+body {
+    background-color: var(--theme-background);
+    color: var(--theme-foreground);
+    font-family: var(--theme-font-body);
+}
+p {
+    color: var(--theme-body);
+    font-family: var(--theme-font-body);
+    font-size: 2.5rem;
+}
 
-    --theme-primary-button: #fff;
-    --theme-primary-button-hover: #bdbdbd;
-    --theme-primary-button-text: #fff;
-    --theme-primary-button-text-hover: #bdbdbd;
-    --theme-primary-button-text-focus: #bdbdbd;
-    --theme-primary-button-border: #fff;
+.header {
+    color: var(--theme-header);
+    font-family: var(--theme-font-title);
+    font-weight: bolder;
+}
 
-    --theme-secondary-button: #fff;
-    --theme-secondary-button-hover: #bdbdbd;
+.subheader {
+    color: var(--theme-subheader);
+    font-family: var(--theme-font-subheader);
+    font-weight: bold;
+}
 
-    /* Font Variables */
-    --theme-font-title: "Inter", sans-serif;
-    --theme-font-body: "Inter", sans-serif;
-    --theme-font-accent: "Playfair Display", serif;
+.body,
+.muted {
+    color: var(--theme-body);
+    font-family: var(--theme-font-body);
+}
+
+.muted {
+    color: var(--theme-subheader);
+}
+
+.navbar-link {
+    position: relative;
+    padding: 0.2em 0.6em;
+    color: var(--theme-primary-button-text);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.22s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    background: none;
+}
+
+.navbar-link:hover,
+.navbar-link:focus-visible,
+.navbar-link.active {
+    color: var(--theme-primary-button-text-hover);
+}
+
+.navbar-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--theme-header);
+    transform: translateX(-50%);
+    transition: width 0.25s ease-out;
+    pointer-events: none;
+}
+
+.navbar-link:hover .navbar-underline,
+.navbar-link:focus-visible .navbar-underline,
+.navbar-link.active .navbar-underline {
+    width: 100%;
 }

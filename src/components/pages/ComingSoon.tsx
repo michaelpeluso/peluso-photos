@@ -1,4 +1,4 @@
-import ContactForm from "../components/ContactComingSoon";
+import ContactForm from "../ui/ContactComingSoon";
 
 export default function ComingSoon() {
     return (

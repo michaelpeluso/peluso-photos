@@ -24,7 +24,7 @@ export const ImageCrossfade: React.FC<ImageCrossfadeProps> = ({ images, interval
                 <img key={img.url} src={img.url} alt={img.alt} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${idx === current ? "opacity-100" : "opacity-0"}`} draggable={false} />
             ))}
             {/* Optional: add a dark overlay for text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t pointer-events-none" />
         </div>
     );
 };

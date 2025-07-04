@@ -5,6 +5,8 @@ const FOLDERS = [
     //    "weddings",
     //    "portraits",
     "coming-soon",
+    "portraits",
+    "events",
 ];
 
 for (const folder of FOLDERS) {

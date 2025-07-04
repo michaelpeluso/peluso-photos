@@ -1,0 +1,49 @@
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Base Theme (light/default) */
+:where([data-theme="light"]) {
+    --theme-background: #f9f9f9; /* Soft white */
+    --theme-foreground: #1c1c1e;
+    --theme-accent: #466985;
+    --theme-primary: #d4d4d4;
+
+    --theme-header: #222222;
+    --theme-subheader: #444444;
+    --theme-body: #2c2c2c;
+    --theme-muted: #6b6b6b;
+
+    --theme-button: #2c2c2c; /* Darker gray button */
+    --theme-button-hover: #1f1f1f;
+    --theme-button-focus: #181818;
+    --theme-button-text: #f0f0f0;
+    --theme-button-text-hover: #cccccc;
+    --theme-button-text-focus: #999999;
+
+    --theme-font-title: "Inter", sans-serif;
+    --theme-font-body: "Inter", sans-serif;
+    --theme-font-accent: "Playfair Display", serif;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --theme-background: #121212;
+    --theme-foreground: #eeeeee;
+    --theme-accent: #7ec1f8;
+    --theme-primary: #242424;
+
+    --theme-header: #f0f0f0;
+    --theme-subheader: #aaaaaa;
+    --theme-body: #dddddd;
+    --theme-body-muted: #747474;
+
+    --theme-button: #eeeeee;
+    --theme-button-hover: #cecece;
+    --theme-button-focus: #a8a8a8;
+    --theme-button-text: #2c2c2c;
+    --theme-button-text-hover: #444444;
+    --theme-button-text-focus: #6b6b6b;
+
+    --theme-font-title: "Inter", sans-serif;
+    --theme-font-body: "Inter", sans-serif;
+    --theme-font-accent: "Playfair Display", serif;
+}
