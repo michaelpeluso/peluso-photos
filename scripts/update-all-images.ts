@@ -1,13 +1,7 @@
 import { execSync } from "child_process";
 
 // List all your Cloudinary folders here
-const FOLDERS = [
-    //    "weddings",
-    //    "portraits",
-    "coming-soon",
-    "portraits",
-    "events",
-];
+const FOLDERS = ["coming-soon", "portraits_showcase", "portraits_personal", "events"];
 
 for (const folder of FOLDERS) {
     console.log(`\nUpdating images for folder: ${folder}`);

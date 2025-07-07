@@ -36,8 +36,7 @@ export const PhotoGridSection = ({ folder, title, description, ctaText = "Book a
             </div>
 
             {/* Grid */}
-            <PhotoGrid images={gridImages} clickable={true} />
-
+            <PhotoGrid images={gridImages} clickable={true} columns={{ base: 1, sm: 1, md: 3, lg: 4 }} maxRows={3} />
             {/* Repeated CTA below */}
             <div className="flex justify-center mt-8">
                 <SecondaryButton href={ctaHref}>{ctaText}</SecondaryButton>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { SecondaryButton } from "./SecondaryButton";
 
 interface ModalProps {
     url: string | null;
@@ -39,9 +40,16 @@ export default function Modal({ url, onClose }: ModalProps) {
             {/* Dark background */}
             <div className="absolute inset-0 bg-black/70 transition-opacity duration-200 pointer-events-none" />
 
-            {/* Focused image */}
-            <div className="relative z-10 max-w-[90vw] max-h-[90vh] p-2 md:p-4 transition-transform duration-300">
-                <img src={url} alt="Expanded view" className="w-full h-full max-h-[90vh] object-contain cursor-pointer" onClick={onClose} />
+            <div className="relative z-10 flex flex-col items-center justify-center gap-2 p-10">
+                {/* Focused image */}
+                <div className="relative z-10 max-w-[90vw] max-h-[90vh] p-2 md:p-4 transition-transform duration-300">
+                    <img src={url} alt="Expanded view" className="w-full h-full max-h-[90vh] object-contain cursor-pointer" onClick={onClose} />
+                </div>
+
+                {/* Buttons */}
+                <div className="mt-4 flex justify-center gap-4 text-white">
+                    <SecondaryButton href={url}>View More</SecondaryButton>
+                </div>
             </div>
         </dialog>
     );

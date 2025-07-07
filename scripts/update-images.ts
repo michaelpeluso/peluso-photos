@@ -5,11 +5,19 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const folder = process.argv[2];
-if (!folder) {
+/*
+the folder input will look like this: "parent-folder_child-folder_grand-child-folder"s
+for example: "portraits_pet-portraits" 
+*/
+
+const folderInput = process.argv[2];
+if (!folderInput) {
     console.error("Usage: npm run update:images <folder>");
     process.exit(1);
 }
+
+// Convert underscores to slashes for Cloudinary
+const folder = folderInput.replace(/_/g, "/");
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const outputFile = path.resolve(__dirname, `../src/data/${folder.replace(/[^a-z0-9-]/gi, "_")}-images.ts`);
@@ -17,6 +25,14 @@ const outputFile = path.resolve(__dirname, `../src/data/${folder.replace(/[^a-z0
 if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
     console.error("Missing Cloudinary credentials in .env");
     process.exit(1);
+}
+
+function generateLabel(alt: string): string {
+    const cleaned = alt.replace(/^[\d_]+/, "").replace(/[-_]+/g, " ");
+    return cleaned
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 }
 
 async function main() {
@@ -27,15 +43,19 @@ async function main() {
     });
 
     let next_cursor: string | undefined = undefined;
-    const allImages: { url: string; alt: string }[] = [];
+    const allImages: { url: string; alt: string; label: string }[] = [];
 
     do {
         const res = await cloudinary.search.expression(`folder:${folder}`).max_results(100).next_cursor(next_cursor).execute();
 
         for (const resource of res.resources) {
+            const alt = resource.public_id.split("/").pop() || "image";
+            const label = generateLabel(alt);
+
             allImages.push({
                 url: resource.secure_url,
-                alt: resource.public_id.split("/").pop() || "image",
+                alt,
+                label,
             });
         }
         next_cursor = res.next_cursor;
