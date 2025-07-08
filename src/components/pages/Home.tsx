@@ -14,18 +14,21 @@ export default function ComingSoon() {
             <Introduction />
             <AboutMe />
             <PhotoGridSection
-                folder="portraits_showcase"
+                folder="showcase"
                 title="Portrait Showcase"
                 description="A collection of expressive portrait styles—from studio setups to natural lighting. Each image reflects a different mood, tone, or story."
                 ctaText="Book a Portrait Session"
                 ctaHref="#contact"
+                maxRows={3}
+                showLabels={true}
             />
             <PhotoGridSection
-                folder="portraits_personal"
+                folder="main_personal"
                 title="Creative Portraits"
                 description="A collection of expressive portrait styles—from studio setups to natural lighting. Each image reflects a different mood, tone, or story."
                 ctaText="Book a Portrait Session"
                 ctaHref="#contact"
+                maxRows={3}
             />
         </>
     );

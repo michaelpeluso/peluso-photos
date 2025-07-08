@@ -3,14 +3,18 @@
 
 type ImageObj = { url: string; alt: string };
 
-// Add your folder names here as you add them!
 const imageImports: Record<string, () => Promise<{ images: ImageObj[] }>> = {
-    // weddings: () => import("../data/weddings-images"),
-    // portraits: () => import("../data/portraits-images"),
     "coming-soon": () => import("../data/coming-soon-images"),
-    portraits_showcase: () => import("../data/portraits_showcase-images"),
-    portraits_personal: () => import("../data/portraits_personal-images"),
-    events: () => import("../data/events-images"),
+    landing: () => import("../data/landing-images"),
+    showcase: () => import("../data/showcase-images"),
+    main_cars: () => import("../data/main_cars-images"),
+    main_headshots: () => import("../data/main_headshots-images"),
+    "main_couples-and-families": () => import("../data/main_couples-and-families-images"),
+    main_grads: () => import("../data/main_grads-images"),
+    main_personal: () => import("../data/main_personal-images"),
+    main_pets: () => import("../data/main_pets-images"),
+    "main_private-events": () => import("../data/main_private-events-images"),
+    main_weddings: () => import("../data/main_weddings-images"),
 };
 
 export async function getImagesByFolder(folder: string): Promise<ImageObj[]> {

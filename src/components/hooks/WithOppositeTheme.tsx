@@ -10,7 +10,6 @@ export default function WithOppositeTheme({ children }: WithOppositeThemeProps) 
 
     useEffect(() => {
         const currentTheme = document.body.getAttribute("data-theme");
-        console.log(currentTheme);
         setOppositeTheme(currentTheme === "dark" ? "light" : "dark");
     }, []);
 

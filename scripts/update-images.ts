@@ -6,8 +6,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /*
-the folder input will look like this: "parent-folder_child-folder_grand-child-folder"s
-for example: "portraits_pet-portraits" 
+The folder input will look like this: "parent-folder_child-folder_grand-child-folder"
+For example: "portraits_pet-portraits"
 */
 
 const folderInput = process.argv[2];
@@ -29,10 +29,9 @@ if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !pr
 
 function generateLabel(alt: string): string {
     const cleaned = alt.replace(/^[\d_]+/, "").replace(/[-_]+/g, " ");
-    return cleaned
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+    const words = cleaned.split(" ").filter(Boolean);
+    words.pop();
+    return words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 }
 
 async function main() {
@@ -46,11 +45,16 @@ async function main() {
     const allImages: { url: string; alt: string; label: string }[] = [];
 
     do {
-        const res = await cloudinary.search.expression(`folder:${folder}`).max_results(100).next_cursor(next_cursor).execute();
+        const res = await cloudinary.search
+            .expression(`folder:${folder}`)
+            .with_field("context") // Required to fetch metadata
+            .max_results(100)
+            .next_cursor(next_cursor)
+            .execute();
 
         for (const resource of res.resources) {
             const alt = resource.public_id.split("/").pop() || "image";
-            const label = generateLabel(alt);
+            const label = resource.context?.custom?.caption || resource.context?.custom?.alt || generateLabel(alt);
 
             allImages.push({
                 url: resource.secure_url,
@@ -58,8 +62,12 @@ async function main() {
                 label,
             });
         }
+
         next_cursor = res.next_cursor;
     } while (next_cursor);
+
+    // Sort images by label (display name) A → Z
+    allImages.sort((a, b) => a.label.localeCompare(b.label));
 
     const content = `// AUTO-GENERATED: Images from ${folder}
 export const images = ${JSON.stringify(allImages, null, 2)};\n`;

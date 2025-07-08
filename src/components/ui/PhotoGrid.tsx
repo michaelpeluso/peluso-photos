@@ -5,6 +5,7 @@ interface PhotoGridItem {
     url: string;
     alt?: string;
     label?: string;
+    showLabels?: boolean;
 }
 
 type ColumnBreakpoints = Partial<{
@@ -21,6 +22,7 @@ interface PhotoGridProps {
     clickable?: boolean;
     columns?: number | ColumnBreakpoints;
     maxRows?: number;
+    showLabels?: boolean;
 }
 
 // Tailwind breakpoints in px
@@ -33,7 +35,7 @@ const breakpoints = {
     "2xl": 1536,
 };
 
-export const PhotoGrid = ({ images, clickable = true, columns = { base: 1, sm: 2, md: 3, lg: 4 }, maxRows }: PhotoGridProps) => {
+export const PhotoGrid = ({ images, clickable = true, columns = { base: 1, sm: 2, md: 3, lg: 4 }, maxRows, showLabels = false }: PhotoGridProps) => {
     const [columnCount, setColumnCount] = useState<number>(typeof columns === "number" ? columns : columns.base ?? 1);
 
     useEffect(() => {
@@ -67,24 +69,31 @@ export const PhotoGrid = ({ images, clickable = true, columns = { base: 1, sm: 2
             return `grid-cols-${columns}`;
         }
 
-        return Object.entries(columns)
-            .map(([breakpoint, count]) => {
-                if (breakpoint === "base") {
-                    return `grid-cols-${count}`;
-                }
-                return `${breakpoint}:grid-cols-${count}`;
-            })
-            .join(" ");
+        const classList = [];
+
+        if (columns.base) classList.push(`grid-cols-${columns.base}`);
+        if (columns.sm) classList.push(`sm:grid-cols-${columns.sm}`);
+        if (columns.md) classList.push(`md:grid-cols-${columns.md}`);
+        if (columns.lg) classList.push(`lg:grid-cols-${columns.lg}`);
+        if (columns.xl) classList.push(`xl:grid-cols-${columns.xl}`);
+        if (columns["2xl"]) classList.push(`2xl:grid-cols-${columns["2xl"]}`);
+
+        return classList.join(" ");
     };
 
     const maxItems = maxRows ? columnCount * maxRows : undefined;
     const displayedImages = maxItems ? images.slice(0, maxItems) : images;
 
     return (
-        <div className={`grid ${getColumnClasses()} gap-4 sm:gap-6 w-full`}>
+        //<div className={`grid ${getColumnClasses()} gap-4 sm:gap-6 w-full`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full`}>
             {displayedImages.map((img) => (
                 <div key={img.url} className="w-full">
-                    <Photo url={img.url} alt={img.alt} label={img.label} clickable={clickable} />
+                    {showLabels && img.label ? ( // show label
+                        <Photo url={img.url} alt={img.alt} label={img.label} clickable={clickable} />
+                    ) : (
+                        <Photo url={img.url} alt={img.alt} clickable={clickable} />
+                    )}
                 </div>
             ))}
         </div>
